@@ -1,0 +1,58 @@
+/* Basic Reset */
+body, h1, h2, p, form {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    padding: 0 10px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+#searchForm input[type="text"] {
+    padding: 10px;
+    margin: 10px;
+    width: 60%;
+}
+
+#searchForm button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#searchForm button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #ddd;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
