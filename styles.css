@@ -1,51 +1,75 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+/* Root Variables for Easy Color Management */
+:root {
+    --primary-color: #4CAF50;
+    --accent-color: #FF5722; /* A vibrant accent color for interactive elements */
+    --text-color: #333333;
+    --background-color: #F4F4F4;
+    --link-hover-color: #367B39;
+    --button-hover-color: #45A049;
+}
+
 /* Basic Reset */
-body, h1, h2, p, form {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* Ensures padding doesn't affect overall dimensions */
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6; /* Improved line spacing for readability */
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: var(--primary-color);
     color: white;
-    padding: 10px 20px;
+    padding: 20px 40px; /* More padding for a better look */
     text-align: center;
 }
 
 nav a {
     color: white;
-    padding: 0 10px;
+    padding: 0 20px; /* More space around nav links */
     text-decoration: none;
+    font-size: 1.2em; /* Larger font size for better readability */
 }
 
 nav a:hover {
     text-decoration: underline;
+    background-color: var(--link-hover-color); /* Slightly darker green on hover */
 }
 
 main {
-    padding: 20px;
+    padding: 40px; /* Increased padding for spacing */
     text-align: center;
 }
 
 #searchForm input[type="text"] {
-    padding: 10px;
-    margin: 10px;
-    width: 60%;
+    padding: 12px;
+    margin: 10px 0; /* Only vertical margin */
+    width: 80%; /* Wider text box */
+    border: 2px solid #ccc; /* Solid, slightly thicker border for the input */
+    border-radius: 5px; /* Rounded corners */
 }
 
 #searchForm button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
+    padding: 12px 25px; /* More padding */
+    background-color: var(--primary-color);
     color: white;
     border: none;
+    border-radius: 5px; /* Rounded corners for the button */
     cursor: pointer;
+    font-size: 1.1em; /* Larger font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
 }
 
 #searchForm button:hover {
-    background-color: #45a049;
+    background-color: var(--button-hover-color);
 }
 
 footer {
@@ -55,4 +79,46 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+    border-top: 1px solid #ccc; /* Adds a line to the top of the footer */
+}
+
+.recipe {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px auto; /* Centered margin */
+    max-width: 800px; /* Maximum width */
+    background-color: #fff; /* White background for recipes */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners for the recipe cards */
+}
+
+.recipe h3 {
+    color: var(--primary-color); /* Green color for headings */
+}
+
+.recipe p {
+    color: #666666; /* Lighter text for the paragraph */
+    margin-bottom: 10px; /* Spacing between paragraphs */
+}
+
+.image-container img {
+    width: 25%; /* Full width within container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+/* Additions for Responsive Design */
+@media only screen and (max-width: 768px) {
+    nav a {
+        font-size: 1em; /* Smaller font size on smaller screens */
+    }
+
+    #searchForm input[type="text"] {
+        width: 90%; /* More width on smaller screens */
+    }
+}
+
+/* Hover Effects for Links */
+a:hover {
+    opacity: 0.8; /* Slight transparency on hover for all links */
 }

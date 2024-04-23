@@ -5,31 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodFolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>FoodFolio: Discover Healthy Recipes</h1>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#recipes">Recipes</a>
-            <a href="#about">About</a>
-        </nav>
+        <div class="container">
+            <h1>FoodFolio: Discover Healthy Recipes</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" id="homeLink">Home</a></li>
+                    <li><a href="#" id="recipesLink">Recipes</a></li>
+                    <li><a href="#" id="aboutLink">About</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
-        <section id="search">
-            <h2>Find Your Favorite Healthy Recipe</h2>
-            <form id="searchForm">
-                <input type="text" id="searchInput" placeholder="Search recipes...">
-                <button type="submit">Search</button>
-            </form>
+        <section id="home" class="content-section">
+            <div class="container">
+                <h2>Welcome to FoodFolio</h2>
+                <div class="image-container">
+                    <img src="home_image1.jpg" alt="Healthy Food">
+                </div>
+                <p>Looking for delicious and healthy recipes? You've come to the right place! FoodFolio offers a vast collection of recipes suitable for various dietary preferences, including keto, paleo, gluten-free, and more.</p>
+                <p>Whether you're a seasoned chef or a novice in the kitchen, our easy-to-follow recipes and helpful tips will make your cooking experience enjoyable and rewarding.</p>
+                <p>Start exploring now by clicking on the "Recipes" tab to find your next favorite meal!</p>
+            </div>
         </section>
-        <section id="recipeList">
-            <h2>Recipes</h2>
-            <div id="recipesContainer"></div>
+        <section id="search" class="content-section" style="display:none;">
+            <div class="container">
+                <h2>Find Your Favorite Healthy Recipe</h2>
+                <form id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Search recipes...">
+                    <button type="submit">Search</button>
+                </form>
+                <div id="recipesContainer"></div>
+            </div>
+        </section>
+        <section id="about" class="content-section" style="display:none;">
+            <div class="container">
+                <h2>About FoodFolio</h2>
+                <p>FoodFolio is a platform dedicated to promoting healthy eating habits by providing nutritious and delicious recipes to individuals around the world.</p>
+                <p>Our mission is to empower individuals to make informed food choices and adopt healthy lifestyles. We believe that eating well should be enjoyable and accessible to everyone.</p>
+                <p>With FoodFolio, you can discover a wide range of recipes tailored to your dietary preferences, whether you're following a specific diet plan or simply looking to incorporate more wholesome ingredients into your meals.</p>
+                <p>Join us on this journey to a healthier and happier you!</p>
+            </div>
         </section>
     </main>
     <footer>
-        <p>© 2024 FoodFolio. All rights reserved.</p>
+        <div class="container">
+            <p>© 2024 FoodFolio. All rights reserved.</p>
+        </div>
     </footer>
     <script src="script.js"></script>
 </body>
