@@ -16,8 +16,9 @@ def create_table_from_csv(conn, csv_file):
     """Create a table in the SQLite database from a CSV file and insert data."""
     try:
         df = pd.read_csv(csv_file)
-        df['id'] = range(1, len(df) + 1)  # Create an 'id' column if not already present
-        # Define the dtype mapping based on your specific data needs.
+        df['id'] = range(1, len(df) + 1)  # Ensure a unique identifier for each row
+
+        # Define the data type mapping based on your specific data needs.
         dtype_mapping = {
             'id': 'INTEGER PRIMARY KEY',
             'recipeName': 'TEXT',
@@ -32,7 +33,7 @@ def create_table_from_csv(conn, csv_file):
             'highProtein': 'INTEGER',
             'lowCarb': 'INTEGER',
             'lowFat': 'INTEGER',
-            # Add other columns with specific types if necessary
+            'description': 'TEXT'  # Ensuring the description field is included
         }
         df.to_sql('recipes', conn, if_exists='replace', index=False, dtype=dtype_mapping)
         print("Table created from CSV successfully and data inserted.")

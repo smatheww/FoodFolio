@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify, abort
+from flask_cors import CORS
 import sqlite3
 import joblib
 import pandas as pd
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all domains on all routes. Adjust as necessary for production environments.
 
 # Load the k-means model and scaler
 model = joblib.load('kmeans_model.pkl')
@@ -12,7 +14,7 @@ scaler = joblib.load('scaler.pkl')
 def get_db_connection():
     """Create and return a connection to the database."""
     conn = sqlite3.connect('foodfolio.db')
-    conn.row_factory = sqlite3.Row  # Allows dictionary-like access to columns
+    conn.row_factory = sqlite3.Row  # Enables dictionary-like access to columns
     return conn
 
 @app.route('/')
@@ -25,7 +27,6 @@ def get_recipes():
     conn = get_db_connection()
     recipes = conn.execute('SELECT * FROM recipes').fetchall()
     conn.close()
-    # Convert rows into a list of dicts before returning as JSON
     return jsonify([dict(recipe) for recipe in recipes])
 
 @app.route('/recipe/<int:recipe_id>', methods=['GET'])
@@ -43,7 +44,6 @@ def login():
     """Simulated login endpoint."""
     if not request.json or not 'username' in request.json or not 'password' in request.json:
         abort(400, description="Username and password are required")
-    # Here you would add authentication against user details in the database.
     return jsonify({'message': 'Logged in successfully'})
 
 @app.route('/recommend', methods=['GET'])
@@ -54,15 +54,23 @@ def recommend():
     recipes = conn.execute('SELECT * FROM recipes').fetchall()
     conn.close()
 
-    # Prepare data for prediction, ensuring it matches the training set's feature order and scaling
     recipes_df = pd.DataFrame([dict(recipe) for recipe in recipes])
-    features = ['protein', 'carbs', 'fat', 'totalCalories']
-    scaled_features = scaler.transform(recipes_df[features])  # Apply scaling as done during training
+    features = ['protein_standardized', 'carbs_standardized', 'fat_standardized']  # Update to use the standardized columns
+    scaled_features = scaler.transform(recipes_df[features])
 
-    predictions = model.predict(scaled_features)  # Make predictions with the scaled features
+    predictions = model.predict(scaled_features)
     recommended_recipes = recipes_df[predictions == desired_cluster].to_dict(orient='records')
 
     return jsonify(recommended_recipes)
+
+@app.route('/api/recipes', methods=['GET'])
+def search_recipes():
+    search_query = request.args.get('search', '')
+    conn = get_db_connection()
+    query = f"SELECT * FROM recipes WHERE recipeName LIKE '%{search_query}%'"
+    recipes = conn.execute(query).fetchall()
+    conn.close()
+    return jsonify([dict(recipe) for recipe in recipes])
 
 @app.errorhandler(404)
 def not_found(error):
