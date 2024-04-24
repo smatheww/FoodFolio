@@ -1,10 +1,10 @@
-from flask import Flask, request, jsonify, abort
+from flask import Flask, render_template, request, jsonify, abort
 from flask_cors import CORS
 import sqlite3
 import joblib
 import pandas as pd
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)  # Enable CORS for all domains on all routes. Adjust as necessary for production environments.
 
 # Load the k-means model and scaler
@@ -19,7 +19,7 @@ def get_db_connection():
 
 @app.route('/')
 def index():
-    return "Welcome to the FoodFolio API!"
+    return render_template('index.html')  # Render the HTML file
 
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
@@ -83,4 +83,4 @@ def bad_request(error):
     return jsonify({'error': 'Bad request', 'message': error.description}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)

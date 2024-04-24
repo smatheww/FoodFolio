@@ -6,6 +6,19 @@ The goal for this project was to develop a software application that assists use
 ## System Architecture
 The system is divided into several Python scripts and modules, each handling a specific part of the application:
 
+### CSV Files used (`All_Diets.csv` and `processedDiet.csv`)
+The file `All_Diets.csv` contains recipes from different diets and cuisines(7062 unique values), all with the aim of providing healthy and nutritious meal options.
+
+Diet_type: The type of diet the recipe is for. (String)
+Recipe_name: The name of the recipe. (String)
+Cuisine_type: The cuisine the recipe is from. (String)
+Protein(g): The amount of protein in grams. (Float)
+Carbs(g): The amount of carbs in grams. (Float)
+Fat(g): The amount of fat in grams. (Float)
+Extraction_day: The day the recipe was extracted. (String)
+
+The `processedDiet.csv` file is the preprocessed file.
+
 ### Data Preprocessing (`datapr.py`)
    - **Pandas** is used for data manipulation 
    - **Scikit-learn** is used for data scaling
@@ -54,15 +67,15 @@ The system is divided into several Python scripts and modules, each handling a s
      
 #### API Testing (`test_api.py`)
    - Used frameworks and libraries suitable for HTTP testing (ex. Python's 'unittest' module and 'requests' library)
-   - This script handles the tests for API endpoints, in particular, the accuracy of te respnses provided by the Flask application.
+   - This script handles the tests for API endpoints, in particular, the accuracy of the responses provided by the Flask application.
 
 ## Machine Learning in FoodFolio: K-Means Clustering
-In FoodFolio, machine learning is utilized to enhance the personalization of recipe recommendations, suggesting recipes that align with users' dietary preferences and nutritional goals. This is cheieved by grouping similar recipes into clusters based on their nutrional content.
+In FoodFolio, machine learning is utilized to enhance the personalization of recipe recommendations, suggesting recipes that align with users' dietary preferences and nutritional goals. This is acheieved by grouping similar recipes into clusters based on their nutrional content.
 
 ### K-Means Implementation
 
 #### Data Preparation
-This step involved preparing the dataset, which included nutritional content such as calories, protein, carbohydrates, and fats for many recipes. This data was cleaned and normalizaed to ensure effective learning and accurate clustering.
+This step involved preparing the dataset, which included nutritional content such as calories, protein, carbohydrates, and fats for many recipes. This data was cleaned and normalized to ensure effective learning and accurate clustering.
 
 #### Feature Engineering
 The data includes several calculated features such as total calories, ratios of macronutrients to total calories, and a health index based on these ratios. These features help to support the functionality of the K-Means algorithm to better understand the dietary profile of each recipe, resulting in more effective clusters.
@@ -73,6 +86,10 @@ The K-Means clustering algorithm is applied to the processed data. The algorithm
 #### Model Utilization
 FoodFolio uses the clustered recipes to make recommendations. So when a user inputs their dietary preferences, the system idenfiies which cluster best matches the user's preferences and suggests recipes from that cluster.
 
-## Conclusion
+## Discussion/Conclusion
 FoodFolio successfully provides a user-friendly platform to give users recipe recommendations that take into consideration their personal goals and the nutritional value of the recipes, thus allowing them to better manage their diets.
-Some future enhancements might include AI-driven personalized nutrition plans and expanded recipe databses to cover more types of cuisine.
+Limitation: Database did not contain recipe instructions.
+Some future enhancements might include user authentication, AI-driven personalized nutrition plans and expanded recipe databases to cover more types of cuisine.
+
+## References
+- https://www.kaggle.com/datasets/thedevastator/healthy-diet-recipes-a-comprehensive-dataset/data?select=All_Diets.csv
