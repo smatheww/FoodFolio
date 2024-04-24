@@ -1,48 +1,78 @@
 # The Development of FoodFolio: A Nutrition Program using Python
 
 ## Overview
-The goal for this project was to develop a software application that helps users in managing their diet by providing recipe recommendations based on the user’s personal goals and the nutritional content of the recipes. This application consists of multiple components including data preprocessing, a backend server using Flask, an SQLite database, and a front end interface for user interaction.
+The goal for this project was to develop a software application that assists users in managing their diet by providing recipe recommendations based on the user’s personal goals and the nutritional content of the recipes. This application consists of multiple components including data preprocessing, a backend server using Flask, an SQLite database, and a front end interface for user interaction.
 
 ## System Architecture
 The system is divided into several Python scripts and modules, each handling a specific part of the application:
 
-1. **Data Preprocessing (`main.py`):**
+### Data Preprocessing (`datapr.py`)
    - **Pandas** is used for data manipulation 
    - **Scikit-learn** is used for data scaling
    - This script handles the initial data cleaning, feature engineering, and preparation. It also loads the dietary data, removes unnecessary columns, renames columns for consistency through the program, calculates nutritional ratios, and data normalization.
 
-2. **Database Management (`database.py`):**
+### Database Management (`database.py`)
    - **SQLite3** is used for database operations
    - This script creates a database connection and inserts the processed data into a table.
 
-3. **Clustering and Recommendations (`kmeans.py`):**
-   - **Scikit-learn** is used for machine learning
+### Clustering and Recommendations (`kmeans.py`)
+   - **Scikit-learn** is used for the k-means clustering model
    - **Joblib** is used for model serialization
    - This script implements a k-means clustering model that categorizes recipes into groups based on their nutritional content, facilitating targeted recommendations.
 
-4. **API Server (`flaskapp.py`):**
+### API Server (`flaskapp.py`)
    - **Flask** is used for the web framework
-   - **SQLite3** is used for database queries
+   - **SQLite3** is used for handling database queries
    - This script is the API backend and handles HTTP requests for retrieving and displaying recipes, user authentication, and providing recipe recommendations based on clustering.
 
-5. **Front-End Development:**
-   - Technologies used: **HTML, CSS, JavaScript, React**
+### Front-End Development
+   - Technologies used: **HTML, CSS, JavaScript**
+   - This script features responsive design, user interaction through dynamic content loading, and recipe search functionality.
+     
+#### HTML Structure (`index.html`)
+   - HTML5 is used to organize the web content into logical sections.
+   - The HTML framework supports the main navigational elements, like the header with links to Home, Recipes, and About pages, and various content sections that include forms for searching recipes and displaying results.
+   - The use of semantic HTML tags enhances the accessibility and search engine optimization (SEO) of the application.
+      
+#### CSS Styling (`styles.css`)
+   - CSS is used to style the layout designed in HTML.
+   - This provides a visually appealing and responsive user interface.
+   - The styling is managed through an external stylesheet that ensures consistency across different sections of the application.
+   - Features like flexbox and media queries are utilized to make the design responsive, adapting to variuos device screens from mobile to desktop.
+     
+#### JavaScript Interactivity (`script.js`)
+   - JavaCcript is used to add interactivity to the FoodFolio application.
+   - It handles user events such as clicks and form submissions, and can load content without needing to reload the page.
+   - By using JavaScript, users can search for recipes based on keywords, with results fetched asynchonously using the Fetch API from the backend.
+   - Error handling is also implemented to alert users about issues like network errors or no search results, enhancing the user experience by providng immediate feedback on their actions. 
 
-6. **Testing (`test_database.py`):**
+### Testing
+
+#### Database Testing (`test_database.py`)
    - **SQLite3** is used for testing database interactions
    - This script handles the tests for the database queries to ensure the integrity of operations such as updating records and fetching data.
+     
+#### API Testing (`test_api.py`)
+   - Used frameworks and libraries suitable for HTTP testing (ex. Python's 'unittest' module and 'requests' library)
+   - This script handles the tests for API endpoints, in particular, the accuracy of te respnses provided by the Flask application.
 
-## Feature Engineering
-The data includes several calculated features such as total calories, ratios of macronutrients to total calories, and a health index based on these ratios. These features help to support the functionality of the k-means algorithm to effectively group the recipes.
+## Machine Learning in FoodFolio: K-Means Clustering
+In FoodFolio, machine learning is utilized to enhance the personalization of recipe recommendations, suggesting recipes that align with users' dietary preferences and nutritional goals. This is cheieved by grouping similar recipes into clusters based on their nutrional content.
 
-## Clustering Algorithm
-K-means clustering is used to group the recipes into similar clusters so that the system can recommend recipes from a cluster that closely matches the user’s dietary preferences, which are inputted into the API.
+### K-Means Implementation
 
-## Front-End Interface
-Details about how the front-end is implemented and functions to provide user interaction and display the recommendations effectively.
+#### Data Preparation
+This step involved preparing the dataset, which included nutritional content such as calories, protein, carbohydrates, and fats for many recipes. This data was cleaned and normalizaed to ensure effective learning and accurate clustering.
 
-## Challenges
-[Discussion of any challenges faced during the development and deployment of the application, and how they were resolved.]
+#### Feature Engineering
+The data includes several calculated features such as total calories, ratios of macronutrients to total calories, and a health index based on these ratios. These features help to support the functionality of the K-Means algorithm to better understand the dietary profile of each recipe, resulting in more effective clusters.
+
+#### Model Training
+The K-Means clustering algorithm is applied to the processed data. The algorithm partitions the recipes into k distinct clusters where each recipe belongs to the cluster with the nearest mean nutrional value. This clustering is based on how similar their nutrional content is, which is calcualted using Euclidean distance between feature vectors.
+
+#### Model Utilization
+FoodFolio uses the clustered recipes to make recommendations. So when a user inputs their dietary preferences, the system idenfiies which cluster best matches the user's preferences and suggests recipes from that cluster.
 
 ## Conclusion
-[Summary of the project outcomes, benefits to users, and any future directions for development.]
+FoodFolio successfully provides a user-friendly platform to give users recipe recommendations that take into consideration their personal goals and the nutritional value of the recipes, thus allowing them to better manage their diets.
+Some future enhancements might include AI-driven personalized nutrition plans and expanded recipe databses to cover more types of cuisine.
