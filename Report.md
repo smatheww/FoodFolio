@@ -91,5 +91,11 @@ FoodFolio successfully provides a user-friendly platform to give users recipe re
 Limitation: Database did not contain recipe instructions.
 Some future enhancements might include user authentication, AI-driven personalized nutrition plans and expanded recipe databases to cover more types of cuisine.
 
+## Contribution Summary
+- Steve focused on the data preprocessing, database management, and initial system setup. His work laid the foundational data structures and ensured that the application could handle user data efficiently. He established the database schema and optimized data queries, which are crucial for the performance of the application.
+- Katherine led the implementation of the machine learning model, backend API development, and the creation of the front-end interface. Her focus was on enhancing user interaction and ensuring data was presented in a meaningful and accessible way. She integrated the machine learning model into the backend to provide dynamic recipe recommendations based on user preferences.
+
+Steve and Katherine utilized GitHub for version control and collaboration, enabling them to work effectively on different components of the project while maintaining a unified codebase. 
+
 ## References
 - https://www.kaggle.com/datasets/thedevastator/healthy-diet-recipes-a-comprehensive-dataset/data?select=All_Diets.csv
