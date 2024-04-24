@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodFolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -25,7 +25,7 @@
             <div class="container">
                 <h2>Welcome to FoodFolio</h2>
                 <div class="image-container">
-                    <img src="home_image1.jpg" alt="Healthy Food">
+                    <img src="{{ url_for('static', filename='home_image1.jpg') }}" alt="Healthy Food">
                 </div>
                 <p>Looking for delicious and healthy recipes? You've come to the right place! FoodFolio offers a vast collection of recipes suitable for various dietary preferences, including keto, paleo, gluten-free, and more.</p>
                 <p>Whether you're a seasoned chef or a novice in the kitchen, our easy-to-follow recipes and helpful tips will make your cooking experience enjoyable and rewarding.</p>
@@ -57,6 +57,6 @@
             <p>© 2024 FoodFolio. All rights reserved.</p>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
